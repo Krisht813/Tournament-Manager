@@ -1117,6 +1117,11 @@ function FooterSection() {
 
 // Main Component
 function TournamentWebsite() {
+  // Scroll to top on component mount
+  React.useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   const PAYMENT_FREQUENCIES = ["monthly", "yearly"]
   const TIERS = [
     {
