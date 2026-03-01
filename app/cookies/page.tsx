@@ -9,6 +9,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Switch } from "@/components/ui/switch"
 import { Label } from "@/components/ui/label"
 import { ThemeToggle } from "@/components/theme-toggle"
+import { ToastProvider, useToast } from "@/components/ui/toast"
 
 // Logo Component
 const Logo = ({ className }: { className?: string }) => {
@@ -44,7 +45,8 @@ const Logo = ({ className }: { className?: string }) => {
   )
 }
 
-function CookiesPage() {
+function CookiesPageContent() {
+  const { showToast } = useToast()
   const [settings, setSettings] = React.useState({
     necessary: true,
     functional: true,
@@ -61,7 +63,8 @@ function CookiesPage() {
   const handleSaveSettings = () => {
     console.log("Saving cookie settings:", settings)
     // Here you would save the settings to localStorage or backend
-    alert("Cookie preferences saved successfully!")
+    localStorage.setItem('cookiePreferences', JSON.stringify(settings))
+    showToast("Cookie preferences saved successfully!")
   }
 
   const handleAcceptAll = () => {
@@ -72,6 +75,14 @@ function CookiesPage() {
       marketing: true,
       social: true,
     })
+    localStorage.setItem('cookiePreferences', JSON.stringify({
+      necessary: true,
+      functional: true,
+      analytics: true,
+      marketing: true,
+      social: true,
+    }))
+    showToast("All cookies accepted!")
   }
 
   const handleRejectAll = () => {
@@ -82,6 +93,14 @@ function CookiesPage() {
       marketing: false,
       social: false,
     })
+    localStorage.setItem('cookiePreferences', JSON.stringify({
+      necessary: true,
+      functional: false,
+      analytics: false,
+      marketing: false,
+      social: false,
+    }))
+    showToast("Optional cookies rejected!")
   }
 
   const cookieTypes = [
@@ -249,6 +268,14 @@ function CookiesPage() {
       {/* Theme Toggle */}
       <ThemeToggle />
     </div>
+  )
+}
+
+function CookiesPage() {
+  return (
+    <ToastProvider>
+      <CookiesPageContent />
+    </ToastProvider>
   )
 }
 
