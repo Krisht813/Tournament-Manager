@@ -23,4 +23,3 @@ echo.
 echo Vercel is now building your app...
 echo Check: https://vercel.com/dashboard
 echo.
-pause
