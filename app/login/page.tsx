@@ -334,22 +334,23 @@ function LoginPage() {
 
                 {/* Remember Me & Forgot Password */}
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-2">
+                  <div className="flex items-center space-x-2 group">
                     <Checkbox
                       id="remember"
                       checked={rememberMe}
                       onCheckedChange={(checked) => setRememberMe(checked as boolean)}
+                      className="cursor-pointer transition-all duration-200 data-[state=checked]:bg-primary data-[state=checked]:border-primary"
                     />
                     <Label
                       htmlFor="remember"
-                      className="text-sm font-normal cursor-pointer"
+                      className="text-sm font-medium cursor-pointer select-none transition-colors group-hover:text-foreground"
                     >
-                      Remember me
+                      Remember me for 30 days
                     </Label>
                   </div>
                   <a
                     href="/forgot-password"
-                    className="text-sm text-primary hover:underline"
+                    className="text-sm font-medium text-primary hover:underline transition-all"
                   >
                     Forgot password?
                   </a>

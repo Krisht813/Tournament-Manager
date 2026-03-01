@@ -654,13 +654,11 @@ function HeroSection() {
                   }}
                   className="mt-12 flex flex-col items-center justify-center gap-2 md:flex-row"
                 >
-                  <div key={1} className="bg-foreground/10 rounded-[14px] border p-0.5">
-                    <Button asChild size="lg" className="rounded-xl px-5 text-base">
-                      <a href="/signup">
-                        <span className="text-nowrap">Get Started</span>
-                      </a>
-                    </Button>
-                  </div>
+                  <Button key={1} asChild size="lg" className="rounded-xl px-5 text-base">
+                    <a href="/signup">
+                      <span className="text-nowrap">Get Started</span>
+                    </a>
+                  </Button>
                   <Button
                     key={2}
                     asChild

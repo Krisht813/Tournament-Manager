@@ -381,16 +381,17 @@ function SignUpPage() {
                 </div>
 
                 {/* Terms & Conditions */}
-                <div className="flex items-start space-x-2">
+                <div className="flex items-center space-x-2">
                   <Checkbox
                     id="terms"
                     checked={agreeToTerms}
                     onCheckedChange={(checked) => setAgreeToTerms(checked as boolean)}
                     required
+                    className="mt-0.5"
                   />
                   <Label
                     htmlFor="terms"
-                    className="text-sm font-normal cursor-pointer leading-relaxed"
+                    className="text-sm font-normal cursor-pointer leading-normal"
                   >
                     I agree to the{' '}
                     <a href="/terms" className="text-primary hover:underline">
