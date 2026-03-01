@@ -1,0 +1,19 @@
+<svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path
+    d="M6 2H10V30H6V2ZM22 2H26V30H22V2ZM30 6V10H2V6H30ZM2 26V22H30V26H2Z"
+    fill="url(#favicon-gradient)"
+  />
+  <defs>
+    <linearGradient
+      id="favicon-gradient"
+      x1="16"
+      y1="2"
+      x2="16"
+      y2="30"
+      gradientUnits="userSpaceOnUse"
+    >
+      <stop offset="0%" stopColor="#DDA0DD" />
+      <stop offset="100%" stopColor="#B0E0E6" />
+    </linearGradient>
+  </defs>
+</svg>
