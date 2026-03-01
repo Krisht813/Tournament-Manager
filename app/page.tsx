@@ -975,23 +975,22 @@ function FooterSection() {
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div className="relative">
             <h2 className="mb-4 text-3xl font-bold tracking-tight">Stay Connected</h2>
-            <p className="mb-6 text-muted-foreground">
+            <p className="mb-6 text-muted-foreground text-sm">
               Join our newsletter for the latest updates and exclusive offers.
             </p>
-            <form className="relative">
+            <form className="relative group">
               <Input
                 type="email"
                 placeholder="Enter your email"
-                className="pr-12 backdrop-blur-sm"
+                className="pr-14 h-11 bg-white/80 dark:bg-background/80 backdrop-blur-sm border-2 focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 transition-all duration-200 rounded-full shadow-sm"
               />
-              <Button
+              <button
                 type="submit"
-                size="icon"
-                className="absolute right-1 top-1 h-8 w-8 rounded-full bg-primary text-primary-foreground transition-transform hover:scale-105"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-primary transition-colors duration-200"
               >
-                <Send className="h-4 w-4" />
+                <Send className="h-5 w-5" />
                 <span className="sr-only">Subscribe</span>
-              </Button>
+              </button>
             </form>
           </div>
           <div>
