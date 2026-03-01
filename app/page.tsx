@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { motion, Variants, HTMLMotionProps } from "framer-motion"
+import { motion, Variants, HTMLMotionProps, AnimatePresence } from "framer-motion"
 import { BadgeCheck, ArrowRight, Menu, X, ChevronRight, Globe, Star, Send, Facebook, Instagram, Linkedin, Twitter, Moon, Sun } from "lucide-react"
 import NumberFlow from "@number-flow/react"
 import { cn } from "@/lib/utils"
@@ -605,6 +605,17 @@ const transitionVariants = {
 }
 
 function HeroSection() {
+  const words = ["Simple", "Easy", "Quick"]
+  const [currentWordIndex, setCurrentWordIndex] = React.useState(0)
+
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentWordIndex((prev) => (prev + 1) % words.length)
+    }, 2500) // Change word every 2.5 seconds
+
+    return () => clearInterval(interval)
+  }, [])
+
   return (
     <>
       <HeroHeader />
@@ -1095,7 +1106,7 @@ function FooterSection() {
         </div>
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t pt-8 text-center md:flex-row">
           <p className="text-sm text-muted-foreground">
-            © 2024 Tournament Manager. All rights reserved.
+            © {new Date().getFullYear()} Tournament Manager. All rights reserved.
           </p>
           <nav className="flex gap-4 text-sm">
             <a href="/privacy" className="transition-colors hover:text-primary">
