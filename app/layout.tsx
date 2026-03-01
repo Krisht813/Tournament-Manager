@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "Tournament Manager - Manage Your Tournaments",
-  description: "Organize, track, and manage your internal tournaments with ease",
+  description: "Organize, track, and manage your internal tournaments with ease. From scheduling to results, everything you need in one beautiful platform.",
 }
 
 export default function RootLayout({
