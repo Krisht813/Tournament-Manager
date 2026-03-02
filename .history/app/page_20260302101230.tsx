@@ -619,23 +619,8 @@ function HeroSection() {
   return (
     <>
       <HeroHeader />
-      <main className="overflow-hidden relative bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950">
-        <BackgroundGradientAnimation
-          gradientBackgroundStart="rgb(253, 230, 245)"
-          gradientBackgroundEnd="rgb(224, 231, 255)"
-          firstColor="221, 160, 221"
-          secondColor="176, 224, 230"
-          thirdColor="216, 191, 216"
-          fourthColor="230, 190, 255"
-          fifthColor="173, 216, 230"
-          pointerColor="200, 180, 255"
-          size="80%"
-          blendingValue="normal"
-          containerClassName="absolute inset-0 h-full w-full opacity-60 dark:opacity-20"
-          className="absolute inset-0"
-          interactive={true}
-        />
-        <section className="relative z-10">
+      <main className="overflow-hidden bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 dark:from-background dark:via-background dark:to-background">
+        <section>
           <div className="relative pt-24 md:pt-36">
             <div className="mx-auto max-w-7xl px-6">
               <div className="text-center sm:mx-auto lg:mr-auto lg:mt-0">

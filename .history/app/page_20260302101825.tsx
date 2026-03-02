@@ -619,7 +619,7 @@ function HeroSection() {
   return (
     <>
       <HeroHeader />
-      <main className="overflow-hidden relative bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950">
+      <main className="overflow-hidden relative bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 dark:from-background dark:via-background dark:to-background">
         <BackgroundGradientAnimation
           gradientBackgroundStart="rgb(253, 230, 245)"
           gradientBackgroundEnd="rgb(224, 231, 255)"
@@ -631,7 +631,7 @@ function HeroSection() {
           pointerColor="200, 180, 255"
           size="80%"
           blendingValue="normal"
-          containerClassName="absolute inset-0 h-full w-full opacity-60 dark:opacity-20"
+          containerClassName="absolute inset-0 opacity-60"
           className="absolute inset-0"
           interactive={true}
         />
