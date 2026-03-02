@@ -2,33 +2,71 @@
 
 import * as React from "react"
 import { motion } from "framer-motion"
-import { ArrowLeft, Mail } from "lucide-react"
+import { ArrowLeft, Lock, CheckCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent } from "@/components/ui/card"
-import { requestPasswordReset } from "@/lib/api"
+import { resetPassword } from "@/lib/api"
+import { useSearchParams } from "next/navigation"
 
-function PasswordResetPage() {
-  const [email, setEmail] = React.useState("")
+function ResetPasswordPage() {
+  const searchParams = useSearchParams()
+  const token = searchParams.get("token")
+  
+  const [password, setPassword] = React.useState("")
+  const [confirmPassword, setConfirmPassword] = React.useState("")
   const [isSubmitted, setIsSubmitted] = React.useState(false)
   const [isLoading, setIsLoading] = React.useState(false)
   const [error, setError] = React.useState("")
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setIsLoading(true)
     setError("")
 
+    if (password !== confirmPassword) {
+      setError("Passwords do not match")
+      return
+    }
+
+    if (password.length < 8) {
+      setError("Password must be at least 8 characters long")
+      return
+    }
+
+    if (!token) {
+      setError("Invalid reset link")
+      return
+    }
+
+    setIsLoading(true)
+
     try {
-      await requestPasswordReset(email)
+      await resetPassword(token, password)
       setIsSubmitted(true)
-    } catch (err) {
-      setError("Failed to send reset email. Please try again.")
-      console.error(err)
+    } catch (err: any) {
+      setError(err.message || "Failed to reset password. Please try again.")
     } finally {
       setIsLoading(false)
     }
+  }
+
+  if (!token) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 dark:from-background dark:via-background dark:to-background p-4">
+        <Card className="bg-white/50 dark:bg-background/50 backdrop-blur-sm border-2 max-w-md">
+          <CardContent className="p-8 text-center">
+            <h1 className="text-2xl font-bold mb-2">Invalid Reset Link</h1>
+            <p className="text-muted-foreground mb-6">
+              This password reset link is invalid or has expired.
+            </p>
+            <Button asChild>
+              <a href="/forgot-password">Request New Link</a>
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
+    )
   }
 
   return (
@@ -59,15 +97,15 @@ function PasswordResetPage() {
                 {/* Icon */}
                 <div className="flex justify-center mb-6">
                   <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10">
-                    <Mail className="h-8 w-8 text-primary" />
+                    <Lock className="h-8 w-8 text-primary" />
                   </div>
                 </div>
 
                 {/* Title and Description */}
                 <div className="text-center mb-8">
-                  <h1 className="text-2xl font-bold mb-2">Reset Your Password</h1>
+                  <h1 className="text-2xl font-bold mb-2">Create New Password</h1>
                   <p className="text-muted-foreground text-sm">
-                    Enter your email address and we'll send you a link to reset your password.
+                    Enter your new password below.
                   </p>
                 </div>
 
@@ -78,15 +116,29 @@ function PasswordResetPage() {
                       {error}
                     </div>
                   )}
-                  
+
                   <div className="space-y-2">
-                    <Label htmlFor="email">Email Address</Label>
+                    <Label htmlFor="password">New Password</Label>
                     <Input
-                      id="email"
-                      type="email"
-                      placeholder="name@example.com"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
+                      id="password"
+                      type="password"
+                      placeholder="Enter new password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      required
+                      disabled={isLoading}
+                      className="bg-white/50 dark:bg-background/50 backdrop-blur-sm"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="confirmPassword">Confirm Password</Label>
+                    <Input
+                      id="confirmPassword"
+                      type="password"
+                      placeholder="Confirm new password"
+                      value={confirmPassword}
+                      onChange={(e) => setConfirmPassword(e.target.value)}
                       required
                       disabled={isLoading}
                       className="bg-white/50 dark:bg-background/50 backdrop-blur-sm"
@@ -94,53 +146,29 @@ function PasswordResetPage() {
                   </div>
 
                   <Button type="submit" className="w-full" disabled={isLoading}>
-                    {isLoading ? "Sending..." : "Send Reset Link"}
+                    {isLoading ? "Resetting..." : "Reset Password"}
                   </Button>
                 </form>
-
-                {/* Sign In Link */}
-                <p className="mt-6 text-center text-sm text-muted-foreground">
-                  Remember your password?{" "}
-                  <a href="/login" className="text-primary font-semibold hover:underline">
-                    Sign in
-                  </a>
-                </p>
               </>
             ) : (
               <>
                 {/* Success State */}
                 <div className="flex justify-center mb-6">
                   <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-100 dark:bg-green-900/30">
-                    <Mail className="h-8 w-8 text-green-600 dark:text-green-400" />
+                    <CheckCircle className="h-8 w-8 text-green-600 dark:text-green-400" />
                   </div>
                 </div>
 
                 <div className="text-center mb-8">
-                  <h1 className="text-2xl font-bold mb-2">Check Your Email</h1>
+                  <h1 className="text-2xl font-bold mb-2">Password Reset Successful!</h1>
                   <p className="text-muted-foreground text-sm">
-                    We've sent a password reset link to <strong>{email}</strong>
-                  </p>
-                  <p className="text-muted-foreground text-sm mt-2">
-                    Please check your inbox and follow the instructions to reset your password.
+                    Your password has been successfully reset. You can now log in with your new password.
                   </p>
                 </div>
 
-                <div className="space-y-4">
-                  <Button asChild className="w-full">
-                    <a href="/login">Back to Login</a>
-                  </Button>
-                  <Button
-                    variant="outline"
-                    onClick={() => setIsSubmitted(false)}
-                    className="w-full"
-                  >
-                    Resend Link
-                  </Button>
-                </div>
-
-                <p className="mt-6 text-center text-xs text-muted-foreground">
-                  Didn't receive the email? Check your spam folder or try again with a different email address.
-                </p>
+                <Button asChild className="w-full">
+                  <a href="/login">Go to Login</a>
+                </Button>
               </>
             )}
           </CardContent>
@@ -150,4 +178,4 @@ function PasswordResetPage() {
   )
 }
 
-export default PasswordResetPage
+export default ResetPasswordPage

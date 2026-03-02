@@ -73,12 +73,6 @@ function PasswordResetPage() {
 
                 {/* Form */}
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  {error && (
-                    <div className="p-3 text-sm text-red-600 bg-red-50 dark:bg-red-900/20 rounded-md">
-                      {error}
-                    </div>
-                  )}
-                  
                   <div className="space-y-2">
                     <Label htmlFor="email">Email Address</Label>
                     <Input
@@ -88,13 +82,12 @@ function PasswordResetPage() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
-                      disabled={isLoading}
                       className="bg-white/50 dark:bg-background/50 backdrop-blur-sm"
                     />
                   </div>
 
-                  <Button type="submit" className="w-full" disabled={isLoading}>
-                    {isLoading ? "Sending..." : "Send Reset Link"}
+                  <Button type="submit" className="w-full">
+                    Send Reset Link
                   </Button>
                 </form>
 

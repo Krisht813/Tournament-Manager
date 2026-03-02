@@ -7,28 +7,16 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent } from "@/components/ui/card"
-import { requestPasswordReset } from "@/lib/api"
 
 function PasswordResetPage() {
   const [email, setEmail] = React.useState("")
   const [isSubmitted, setIsSubmitted] = React.useState(false)
-  const [isLoading, setIsLoading] = React.useState(false)
-  const [error, setError] = React.useState("")
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    setIsLoading(true)
-    setError("")
-
-    try {
-      await requestPasswordReset(email)
-      setIsSubmitted(true)
-    } catch (err) {
-      setError("Failed to send reset email. Please try again.")
-      console.error(err)
-    } finally {
-      setIsLoading(false)
-    }
+    console.log("Password reset requested for:", email)
+    setIsSubmitted(true)
+    // Here you would send the reset link to the email
   }
 
   return (
@@ -73,12 +61,6 @@ function PasswordResetPage() {
 
                 {/* Form */}
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  {error && (
-                    <div className="p-3 text-sm text-red-600 bg-red-50 dark:bg-red-900/20 rounded-md">
-                      {error}
-                    </div>
-                  )}
-                  
                   <div className="space-y-2">
                     <Label htmlFor="email">Email Address</Label>
                     <Input
@@ -88,13 +70,12 @@ function PasswordResetPage() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
-                      disabled={isLoading}
                       className="bg-white/50 dark:bg-background/50 backdrop-blur-sm"
                     />
                   </div>
 
-                  <Button type="submit" className="w-full" disabled={isLoading}>
-                    {isLoading ? "Sending..." : "Send Reset Link"}
+                  <Button type="submit" className="w-full">
+                    Send Reset Link
                   </Button>
                 </form>
 
