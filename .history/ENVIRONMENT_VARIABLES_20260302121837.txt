@@ -1,0 +1,34 @@
+# ==============================================
+# VERCEL ENVIRONMENT VARIABLES
+# ==============================================
+# Go to: https://vercel.com/krisht813s-projects/tournament-manager/settings/environment-variables
+# Add these:
+
+NEXT_PUBLIC_API_URL=https://tournament-manager-production-e9d7.up.railway.app
+
+
+# ==============================================
+# RAILWAY ENVIRONMENT VARIABLES
+# ==============================================
+# Go to: https://railway.app/dashboard
+# Click your backend service → Variables
+# Add these:
+
+SECRET_KEY=kr
+DEBUG=False
+ALLOWED_HOSTS=.railway.app
+EMAIL_HOST=smtp.gmail.com
+EMAIL_PORT=587
+EMAIL_USE_TLS=True
+EMAIL_HOST_USER=krisht813@gmail.com
+EMAIL_HOST_PASSWORD=gowxawnzqtfknlmf
+DEFAULT_FROM_EMAIL=krisht813@gmail.com
+FRONTEND_URL=https://tournament-manager.vercel.app
+DATABASE_URL=postgresql://neondb_owner:npg_7y0FlAYLVbaI@ep-noisy-darkness-a1ulk1d7-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require
+
+
+# ==============================================
+# IMPORTANT: DO NOT COMMIT THIS FILE TO GIT
+# ==============================================
+# This file contains sensitive credentials
+# Keep it local only
