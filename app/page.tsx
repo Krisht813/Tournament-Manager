@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { motion, Variants, HTMLMotionProps, AnimatePresence } from "framer-motion"
-import { BadgeCheck, ArrowRight, Menu, X, ChevronRight, Globe, Star, Send, Facebook, Instagram, Linkedin, Twitter, Moon, Sun } from "lucide-react"
+import { BadgeCheck, ArrowRight, Menu, X, ChevronRight, Globe, Star, Send, Facebook, Instagram, Linkedin, Moon, Sun } from "lucide-react"
 import NumberFlow from "@number-flow/react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
@@ -1053,12 +1053,14 @@ function FooterSection() {
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Button variant="outline" size="icon" className="rounded-full">
-                      <Twitter className="h-4 w-4" />
-                      <span className="sr-only">Twitter</span>
+                      <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                      </svg>
+                      <span className="sr-only">X (Twitter)</span>
                     </Button>
                   </TooltipTrigger>
                   <TooltipContent>
-                    <p>Follow us on Twitter</p>
+                    <p>Follow us on X</p>
                   </TooltipContent>
                 </Tooltip>
               </TooltipProvider>
