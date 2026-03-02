@@ -1008,14 +1008,14 @@ function FooterSection() {
               <Input
                 type="email"
                 placeholder="Enter your email"
-                className="pr-12 h-12 bg-white/50 dark:bg-background/50 backdrop-blur-sm border-border/50 rounded-full"
+                className="pr-12 h-12 bg-white/50 dark:bg-background/50 backdrop-blur-sm border-border/50"
               />
               <Button
                 type="submit"
                 size="icon"
-                className="absolute right-1 top-1 h-10 w-10 rounded-full"
+                className="absolute right-2 top-2 h-8 w-8 rounded-full"
               >
-                <Send className="h-5 w-5" />
+                <Send className="h-4 w-4" />
                 <span className="sr-only">Subscribe</span>
               </Button>
             </form>

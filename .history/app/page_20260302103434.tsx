@@ -1015,7 +1015,7 @@ function FooterSection() {
                 size="icon"
                 className="absolute right-1 top-1 h-10 w-10 rounded-full"
               >
-                <Send className="h-5 w-5" />
+                <Send className="h-4 w-4" />
                 <span className="sr-only">Subscribe</span>
               </Button>
             </form>
