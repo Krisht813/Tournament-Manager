@@ -179,16 +179,4 @@ function ResetPasswordForm() {
   )
 }
 
-function ResetPasswordPage() {
-  return (
-    <Suspense fallback={
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 dark:from-background dark:via-background dark:to-background">
-        <div className="text-center">Loading...</div>
-      </div>
-    }>
-      <ResetPasswordForm />
-    </Suspense>
-  )
-}
-
 export default ResetPasswordPage
